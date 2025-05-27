@@ -8,6 +8,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
+    "dev:host": "vite --host --port 4050",
     "preview": "vite preview --port 5050",
     "test": "vitest",
     "test:run": "vitest run",

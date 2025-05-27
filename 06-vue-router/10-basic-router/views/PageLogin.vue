@@ -1,19 +1,24 @@
 <script setup lang="ts">
-import { UiButton, UiFormGroup, UiInput } from '@shgk/vue-course-ui'
-import { ref } from 'vue'
-import MeetupsAuthForm from '../components/MeetupsAuthForm.vue'
-import LayoutAuth from '../components/LayoutAuth.vue'
-import { login } from '../api.ts'
+import { UiButton, UiFormGroup, UiInput } from '@shgk/vue-course-ui';
+import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import MeetupsAuthForm from '../components/MeetupsAuthForm.vue';
+import LayoutAuth from '../components/LayoutAuth.vue';
+import { login } from '../api.ts';
 
-const email = ref('demo@email')
-const password = ref('password')
+const router = useRouter();
+const route = useRoute();
+
+const email = ref('demo@email');
+const password = ref('password');
 
 async function onSubmit() {
   try {
-    await login(email.value, password.value)
+    await login(email.value, password.value);
     // Авторизация прошла успешно
+    router.push(route.query.from ? String(route.query.from) : { name: 'index' });
   } catch (error) {
-    alert((error as Error).message)
+    alert((error as Error).message);
   }
 }
 </script>
@@ -35,7 +40,7 @@ async function onSubmit() {
 
       <template #append>
         Нет аккаунта?
-        <a href="/register">Зарегистрируйтесь</a>
+        <RouterLink :to="{ name: 'register' }">Зарегистрируйтесь</RouterLink>
       </template>
     </MeetupsAuthForm>
   </LayoutAuth>
