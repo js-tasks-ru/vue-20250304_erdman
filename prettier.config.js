@@ -12,4 +12,5 @@ export default {
   // Здесь вы можете переопределять правила Prettier по вашему усмотрению
   'semi': true, // Добавлять точку с запятой в конце выражений
   'arrowParens': 'always',
+  'embeddedLanguageFormatting': 'auto',
 }
